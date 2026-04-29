@@ -28,12 +28,22 @@ void main() {
             case "1":
                 float sacar=Float.parseFloat(IO.readln("Você tem R$"+ String.format("%.2f",saldo)+" Quanto quer sacar: "));
                 resu= saldo - sacar;
-                println("Você sacou R$"+sacar);
-                println("Seu novo saldo é R$"+resu);
+                println("Você sacou -R$"+String.format("%.2f",sacar));
+                println("Seu novo saldo é R$"+String.format("%.2f",resu));
+                println("--------------------------------------");
+        }
+        switch (opcao){
+            case "2":
+                float depos=Float.parseFloat(IO.readln("Você tem R$"+ String.format("%.2f",saldo)+" Quanto quer depositar: "));
+                resu= saldo + depos;
+                println("Você depositou +R$"+String.format("%.2f",depos));
+                println("Seu novo saldo é R$"+String.format("%.2f",resu));
+                println("--------------------------------------");
         }
         switch (opcao){
             case "3":
                 println("Seu saldo é R$"+String.format("%.2f",saldo));
+                println("--------------------------------------");
         }
     }
 }

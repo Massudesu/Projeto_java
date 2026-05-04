@@ -19,7 +19,7 @@ void main() {
     int somaImpar=0;
 
     for(int i = 1; i<=10; i++){
-        int n = Integer.parseInt(IO.readln("Digite 10 numeros inteiros: "));
+        int n = Integer.parseInt(IO.readln("Digite 10 numeros inteiros "+i+"º: " ));
         soma +=n;
         if(n % 2==0){
             pares +=1;

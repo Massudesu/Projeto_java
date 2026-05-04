@@ -9,5 +9,5 @@ void main() {
             n+=i;
         }
     }
-    println("Soma: "+n);
+    print("Soma: "+n);
 }

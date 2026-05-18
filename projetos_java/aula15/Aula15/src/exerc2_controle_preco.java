@@ -12,14 +12,16 @@ void main() {
     for(int i=0; i< preco.length; i++){
         preco[i] = Integer.parseInt(readln("Escreva o "+(i+1)+"º preço: "));
         if(i == 1) {
-            maior = preco;
-            menor = preco;
+            maior = preco[i];
+            menor = preco[i];
         }
-        if(preco>maior){
-            maior = preco;
+        if(preco[i]>maior){
+            maior = preco[i];
         }
-        if(preco<menor){
-            menor = preco;
+        if(preco[i]<menor){
+            menor = preco[i];
         }
     }
+    println("O maior numero é: "+maior);
+    println("O menor numero é: "+menor);
 }

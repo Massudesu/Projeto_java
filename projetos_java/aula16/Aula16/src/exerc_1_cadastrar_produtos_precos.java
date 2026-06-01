@@ -10,38 +10,51 @@
 
 
 import static java.lang.IO.*;
+
 void main() {
-    float soma= 0;
+    float soma = 0;
+
     List<String> produtos = new ArrayList<>();
     List<Float> precos = new ArrayList<>();
 
     while (true) {
-
         String produto = readln("Digite o produto ('fim' para sair): ");
+
         if (produto.equalsIgnoreCase("fim")) {
             break;
         }
-        Float preco = Float.parseFloat(readln("Digite o valor do produto: "));
+
+        float preco = Float.parseFloat(
+                readln("Digite o valor do produto: "));
 
         if (!produto.isEmpty()) {
             produtos.add(produto);
             precos.add(preco);
+
             println(produto + " adicionado!");
             println("R$" + preco);
 
-
+            soma += preco;
         }
-        soma+= preco;
-
-//    for (String produto:produtos) {
-//        for(float preco:precos){
-//            println(produto+ " R$"+preco);
-//            soma+= preco;
-//
-//        }
-//
-//    }
     }
-        println("O valor total da compra é: R$" + soma);
 
+    println("Produtos cadastrados:");
+
+    for (int i = 0; i < produtos.size(); i++) {
+        println(produtos.get(i) + " - R$" + precos.get(i));
+    }
+
+    println("O valor total da compra é: R$" + soma);
+
+    if (!produtos.isEmpty()) {
+        int indiceMaior = 0;
+
+        for (int i = 1; i < precos.size(); i++) {
+            if (precos.get(i) > precos.get(indiceMaior)) {
+                indiceMaior = i;
+            }
+        }
+
+        println("Produto mais caro: " + produtos.get(indiceMaior) + " - R$" + precos.get(indiceMaior));
+    }
 }

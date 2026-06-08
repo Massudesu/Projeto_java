@@ -11,101 +11,180 @@
 //     exibir a mensagem "Lista vazia" senão exibir os produtos cadastrados.
 //     para a opção 6 sair do programa e exibir na tela "Programa encerrado com sucesso!".
 import static java.lang.IO.*;
+void main(){
 
+        String[] nomes = new String[10];
+        int[] idades = new int[10];
+        String[] cursos = new String[10];
 
-//para pegar de referencia
+        int totalAlunos = 0;
+        int opcao;
 
+        do {
 
-//ArrayList<String> listaCompras = new ArrayList<>();
-//
-//void main() {
-//    while (true) {
-//        println("LISTA DE COMPRAS");
-//        println("1 - Adicionar a lista");
-//        println("2 - Pesquisar item");
-//        println("3 - Remover item");
-//        println("4 - Alterar item");
-//        println("5 - Listar produtos");
-//        println("6 - Sair");
-//        print("Escolha uma opção: ");
-//        String opcao = readln();
-//
-//        switch (opcao) {
-//            case "1":
-//                println("Adicionar Itens (digite 'sair' para voltar)");
-//                while (true) {
-//                    print("Digite o produto: ");
-//                    String produto = readln().trim();
-//                    if (produto.equalsIgnoreCase("sair")) {
-//                        break;
-//                    }
-//
-//                    if (!produto.isEmpty()) {
-//                        listaCompras.add(produto);
-//                        println(produto + " adicionado!");
-//                    }
-//                }
-//                break;
-//
-//            case "2":
-//                println("Pesquisar Item");
-//                print("Digite o produto para pesquisar: ");
-//                String pesquisar = readln().trim();
-//
-//                if (listaCompras.contains(pesquisar)) {
-//                    println("Produto encontrado: " + pesquisar);
-//                } else {
-//                    println("Produto não encontrado");
-//                }
-//                break;
-//
-//            case "3":
-//                println("Remover Item ");
-//                print("Digite o produto a ser removido: ");
-//                String remover = readln().trim();
-//
-//
-//                if (listaCompras.remove(remover)) {
-//                    println("Produto encontrado e removido com sucesso!");
-//                } else {
-//                    println("Produto não encontrado");
-//                }
-//                break;
-//
-//            case "4":
-//                println("Alterar Item");
-//                print("Digite o nome do produto que deseja alterar: ");
-//                String antigo = readln().trim();
-//
-//                int indice = listaCompras.indexOf(antigo);
-//                if (indice != -1) {
-//                    print("Digite o novo nome para o produto: ");
-//                    String novo = readln().trim();
-//                    if (!novo.isEmpty()) {
-//                        listaCompras.set(indice, novo);
-//                        println("Produto alterado com sucesso!");
-//                    }
-//                } else {
-//                    println("Produto não encontrado");
-//                }
-//                break;
-//
-//            case "5":
-//                println("Produtos Cadastrados");
-//                if (listaCompras.isEmpty()) {
-//                    println("Lista vazia");
-//                } else {
-//                    for (int i = 0; i < listaCompras.size(); i++) {
-//                        println((i + 1) + ". " + listaCompras.get(i));
-//                    }
-//                }
-//                break;
-//            case "6":
-//                println("Programa encerrado com sucesso!");
-//                return;
-//            default:
-//                println("Opção inválida! Tente novamente.");
-//                break;
-//        }
-//    }
-//}
+            println("------ SISTEMA DE CADASTRO DE ALUNOS ------");
+            println("1 - Cadastrar aluno");
+            println("2 - Listar alunos");
+            println("3 - Buscar aluno pelo nome");
+            println("4 - Remover aluno");
+            println("5 - Sair");
+            print("Escolha uma opção: ");
+
+            opcao = Integer.parseInt(IO.readln());
+
+            switch (opcao) {
+
+                case 1:
+
+                    if (totalAlunos >= nomes.length) {
+                        println("Limite máximo de alunos atingido.");
+                        break;
+                    }
+
+                    String nome;
+
+                    do {
+                        print("Nome: ");
+                        nome = readln().trim();
+
+                        if (nome.isEmpty()) {
+                            println("ERRO: o nome do aluno não pode ficar vazio.");
+                        }
+
+                    } while (nome.isEmpty());
+
+                    int idade = Integer.parseInt(IO.readln("Idade: "));
+
+                    print("Curso: ");
+                    String curso = readln();
+
+                    nomes[totalAlunos] = nome;
+                    idades[totalAlunos] = idade;
+                    cursos[totalAlunos] = curso;
+
+                    totalAlunos++;
+
+                    println("Aluno cadastrado com sucesso!");
+                    break;
+
+                case 2:
+
+                    println("------ LISTA DE ALUNOS ------");
+
+                    if (totalAlunos == 0) {
+                        println("Nenhum aluno cadastrado.");
+                    } else {
+
+                        for (int i = 0; i < totalAlunos; i++) {
+
+                            println("Aluno " + (i + 1));
+                            println("Nome: " + nomes[i]);
+                            println("Idade: " + idades[i]);
+                            println("Curso: " + cursos[i]);
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    if (totalAlunos == 0) {
+                        println("Nenhum aluno cadastrado.");
+                        break;
+                    }
+
+                    print("Digite o nome do aluno: ");
+                    String nomeBusca = readln();
+
+                    boolean encontrado = false;
+
+                    for (int i = 0; i < totalAlunos; i++) {
+
+                        if (nomes[i].equalsIgnoreCase(nomeBusca)) {
+
+                            println("Aluno encontrado!");
+                            println("Nome: " + nomes[i]);
+                            println("Idade: " + idades[i]);
+                            println("Curso: " + cursos[i]);
+
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado) {
+                        println("Aluno não encontrado.");
+                    }
+
+                    break;
+
+                case 4:
+
+                    if (totalAlunos == 0) {
+                        println("Nenhum aluno cadastrado.");
+                        break;
+                    }
+
+                    print("Digite o nome do aluno que deseja remover: ");
+                    String nomeRemover = readln();
+
+                    int indice = -1;
+
+                    for (int i = 0; i < totalAlunos; i++) {
+
+                        if (nomes[i].equalsIgnoreCase(nomeRemover)) {
+                            indice = i;
+                            break;
+                        }
+                    }
+
+                    if (indice == -1) {
+
+                        println("Aluno não encontrado.");
+
+                    } else {
+
+                        println("Aluno encontrado:");
+                        println("Nome: " + nomes[indice]);
+                        println("Idade: " + idades[indice]);
+                        println("Curso: " + cursos[indice]);
+
+                        print("Deseja realmente remover este aluno? (S/N): ");
+                        String confirmacao = readln();
+
+                        if (confirmacao.equalsIgnoreCase("S")) {
+
+                            for (int i = indice; i < totalAlunos - 1; i++) {
+                                nomes[i] = nomes[i + 1];
+                                idades[i] = idades[i + 1];
+                                cursos[i] = cursos[i + 1];
+                            }
+
+                            nomes[totalAlunos - 1] = null;
+                            cursos[totalAlunos - 1] = null;
+                            idades[totalAlunos - 1] = 0;
+
+                            totalAlunos--;
+
+                            println("Aluno removido com sucesso!");
+
+                        } else {
+
+                            println("Operação cancelada.");
+                        }
+                    }
+
+                    break;
+
+                case 5:
+
+                    println("Sistema encerrado.");
+                    break;
+
+                default:
+
+                    println("Opção inválida.");
+            }
+
+        } while (opcao != 5);
+}
